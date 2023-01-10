@@ -247,8 +247,11 @@ static NSDictionary *getDictionaryFromNSError(NSError *error) {
         }
       };
 
-  [[FIRDynamicLinks dynamicLinks] handleUniversalLink:userActivity.webpageURL
-                                           completion:completionBlock];
+   NSTimeInterval delayInSeconds = 3.0;
+    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
+    dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+        [[FIRDynamicLinks dynamicLinks] handleUniversalLink:userActivity.webpageURL
+                                                 completion:completionBlock];
 
   // Results of this are ORed and NO doesn't affect other delegate interceptors' result.
   return NO;
