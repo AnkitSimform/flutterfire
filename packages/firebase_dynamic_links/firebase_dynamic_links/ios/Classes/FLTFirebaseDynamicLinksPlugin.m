@@ -252,7 +252,7 @@ static NSDictionary *getDictionaryFromNSError(NSError *error) {
     dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
         [[FIRDynamicLinks dynamicLinks] handleUniversalLink:userActivity.webpageURL
                                                  completion:completionBlock];
-
+});
   // Results of this are ORed and NO doesn't affect other delegate interceptors' result.
   return NO;
 }
